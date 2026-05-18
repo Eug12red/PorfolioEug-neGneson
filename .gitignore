@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+.env
+.env.local
+.DS_Store
+*.log
+
+# Dossier de travail local (photos brutes / archives)
+port folio 2/
