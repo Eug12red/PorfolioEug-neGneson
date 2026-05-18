@@ -29,10 +29,10 @@ const SITE_DESC =
 export const metadata: Metadata = {
   // metadataBase permet à Next.js de transformer l'image OG relative en URL absolue
   metadataBase: new URL('https://porfolio-eug-ne-gneson.vercel.app'),
-  title: 'SYNAPSE — portfolio',
+  title: 'Eugene Kamegneson Portfolio',
   description: SITE_DESC,
   openGraph: {
-    title: 'SYNAPSE — portfolio',
+    title: 'Eugene Kamegneson Portfolio',
     description: SITE_DESC,
     type: 'website',
     locale: 'fr_FR',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SYNAPSE — portfolio',
+    title: 'Eugene Kamegneson Portfolio',
     description: SITE_DESC,
   },
 }

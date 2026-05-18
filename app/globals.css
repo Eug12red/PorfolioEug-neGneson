@@ -127,7 +127,9 @@ html, body {
   object-fit: cover;
   transform: scale(1.5);
   will-change: transform;
-  filter: brightness(0.55) saturate(0.75) contrast(1.05);
+  /* Boost cinéma : contraste punchy, couleurs vivantes, on garde un soupçon
+     de tamisage pour ne pas écraser la typo. */
+  filter: brightness(0.82) saturate(1.18) contrast(1.22);
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -137,8 +139,12 @@ html, body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at center, transparent 0%, rgba(10,11,15,0.55) 70%, rgba(10,11,15,0.85) 100%),
-    linear-gradient(180deg, rgba(10,11,15,0.55) 0%, transparent 25%, transparent 75%, rgba(10,11,15,0.85) 100%);
+    /* Vignette douce : on ne mange que les coins, le centre respire */
+    radial-gradient(ellipse 100% 80% at center, transparent 38%, rgba(10,11,15,0.45) 78%, rgba(10,11,15,0.78) 100%),
+    /* Letterbox cinéma : protège le top (nav) et le bottom (HUD) */
+    linear-gradient(180deg, rgba(10,11,15,0.72) 0%, rgba(10,11,15,0.18) 18%, transparent 32%, transparent 62%, rgba(10,11,15,0.55) 85%, rgba(10,11,15,0.92) 100%),
+    /* Light leak cyan discret : tonalité SYNAPSE, jamais > 8% */
+    linear-gradient(115deg, rgba(127,231,220,0.06) 0%, transparent 35%, transparent 70%, rgba(127,231,220,0.04) 100%);
 }
 
 /* ── Minimap ──────────────────────────────────────── */
@@ -185,8 +191,17 @@ html, body {
   object-fit: cover;
   transform: scale(1.5);
   will-change: transform;
+  /* Même grade que le fullscreen, légèrement plus vif (vignette absente ici) */
+  filter: saturate(1.22) contrast(1.18) brightness(1.04);
   user-select: none;
   -webkit-user-drag: none;
+}
+
+/* Vignette interne sur le cadre miniature — donne de la profondeur, signe « cinéma » */
+.minimap-img-preview {
+  box-shadow:
+    inset 0 0 24px rgba(10,11,15,0.55),
+    inset 0 0 0 1px rgba(127,231,220,0.08);
 }
 
 .minimap-info-list {
