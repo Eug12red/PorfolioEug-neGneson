@@ -21,9 +21,26 @@ const mono = JetBrains_Mono({
   variable: '--font-mono',
 })
 
+const SITE_DESC =
+  'Étudiant en art numérique. Installations immersives, IA, mapping, interfaces cérébrales.'
+
 export const metadata: Metadata = {
+  // metadataBase permet à Next.js de transformer l'image OG relative en URL absolue
+  metadataBase: new URL('https://porfolio-eug-ne-gneson.vercel.app'),
   title: 'SYNAPSE — portfolio',
-  description: 'Étudiant en art numérique. Installations immersives, IA, mapping, interfaces cérébrales.',
+  description: SITE_DESC,
+  openGraph: {
+    title: 'SYNAPSE — portfolio',
+    description: SITE_DESC,
+    type: 'website',
+    locale: 'fr_FR',
+    siteName: 'SYNAPSE',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SYNAPSE — portfolio',
+    description: SITE_DESC,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
