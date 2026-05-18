@@ -8,8 +8,8 @@ import Link from 'next/link'
  */
 export default function ContactPage() {
   const links = [
-    { label: 'Instagram', handle: '@ton_handle', href: 'https://instagram.com/' },
-    { label: 'GitHub', handle: '/ton_handle', href: 'https://github.com/' },
+    { label: 'Instagram', handle: '@sulky_eug', href: 'https://instagram.com/sulky_eug' },
+    { label: 'GitHub', handle: '/Eug12red', href: 'https://github.com/Eug12red' },
   ]
 
   return (

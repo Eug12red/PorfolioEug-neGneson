@@ -5,6 +5,7 @@ import Cursor from '@/components/Cursor'
 import Nav from '@/components/Nav'
 import SmoothScroll from '@/components/SmoothScroll'
 import MiniMap from '@/components/MiniMap'
+import Credit from '@/components/Credit'
 
 const serif = Instrument_Serif({
   subsets: ['latin'],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Cursor />
           <main className="page-enter">{children}</main>
           <MiniMap />
+          <Credit />
         </SmoothScroll>
       </body>
     </html>

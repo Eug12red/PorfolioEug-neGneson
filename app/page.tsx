@@ -15,7 +15,6 @@ const SynapseField = dynamic(() => import('@/components/SynapseField'), {
  * Champ shader interactif en backdrop, typographie au-dessus.
  */
 export default function Home() {
-  const captionRef = useRef<HTMLParagraphElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLAnchorElement>(null)
@@ -30,12 +29,9 @@ export default function Home() {
       { opacity: 1, duration: 2.2, ease: 'power2.out' }
     )
 
-    tl.fromTo(captionRef.current,
-      { opacity: 0, y: 8 },
-      { opacity: 1, y: 0, duration: 0.8 }, '-=1.5')
-    .fromTo(titleRef.current,
+    tl.fromTo(titleRef.current,
       { opacity: 0, filter: 'blur(20px)', y: 30 },
-      { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.6 }, '-=0.4')
+      { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.6 }, '-=1.5')
     .fromTo(subRef.current,
       { opacity: 0, y: 16 },
       { opacity: 1, y: 0, duration: 1 }, '-=0.9')
@@ -60,16 +56,12 @@ export default function Home() {
 
       {/* Typo */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 text-center">
-        <p ref={captionRef} className="mb-10 font-mono text-[10px] uppercase tracking-[0.35em] text-mute">
-          un esprit s&apos;éveille
-        </p>
-
         <h1
           ref={titleRef}
           className="font-serif italic leading-[0.9] tracking-tight"
           style={{ fontSize: 'clamp(72px, 14vw, 220px)' }}
         >
-          SYNAPSE<span className="text-synapse">.</span>
+          INTRO<span className="text-synapse">.</span>
         </h1>
 
         <p ref={subRef} className="mt-10 max-w-md font-serif text-lg italic leading-relaxed text-mute md:text-xl">
