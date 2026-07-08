@@ -24,10 +24,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-[150] flex items-center justify-between p-6 font-mono text-[10px] uppercase tracking-[0.25em] mix-blend-difference md:p-8">
-        <Link href="/" className="text-ghost hover:text-synapse" data-cursor="home">
-          SYNAPSE<span className="text-synapse">.</span>
-        </Link>
+      <header className="fixed top-0 left-0 right-0 z-[150] flex items-center justify-end p-6 font-mono text-[10px] uppercase tracking-[0.25em] mix-blend-difference md:p-8">
         <button
           onClick={() => setOpen(!open)}
           className="text-ghost"

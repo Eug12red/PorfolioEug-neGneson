@@ -58,13 +58,13 @@ export default function AboutPage() {
 
             <ol className="mt-6 space-y-8 border-l border-ink/15 pl-6">
               <li>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40">2024 — 2026</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40">2022 — 2026</p>
                 <p className="mt-1 font-serif text-xl italic">Master Art Numérique</p>
                 <p className="text-sm text-ink/60">Conservatoire royal de Mons — Arts² (Belgique)</p>
               </li>
               <li>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40">2021 — 2024</p>
-                <p className="mt-1 font-serif text-xl italic">Bachelor Art Numérique</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40">2019 — 2021</p>
+                <p className="mt-1 font-serif text-xl italic">Bachelor IT</p>
                 <p className="text-sm text-ink/60">Université de Douala (Cameroun)</p>
               </li>
               <li>

@@ -37,9 +37,8 @@ const individuals: Project[] = [
       "Cloud confronte le geste anodin — une requête, un prompt, une question posée à la machine — à son coût matériel invisible. La projection couvre une façade ; l'image est entière, presque iconique. À chaque interaction du public via une interface IA, un fragment de l'image est littéralement effacé, érodé, désintégré. La beauté de la projection se consume au rythme de notre curiosité. Quand l'œuvre est devenue un trou noir, elle se reconstruit, et l'on recommence.",
     tools: ['TouchDesigner', 'Stable Diffusion', 'GLSL', 'Projection façade'],
     connections: ['mind-interaction', 'open-mind'],
-    // Placeholder Unsplash — remplace par tes vrais visuels Cloud quand tu les as
-    image:
-      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop',
+    image: '/projects/cloud-cover.png',
+    gallery: ['/projects/cloud-cover.png'],
   },
   {
     slug: 'mind-interaction',
@@ -124,8 +123,8 @@ const collections: Project[] = [
       "Voyage immersif dans les abysses marins. Un univers étrange où le visiteur devient lui-même partie du courant.",
     tools: ['TouchDesigner', 'Mapping', 'Sound design'],
     connections: ['mons-2025'],
-    image:
-      'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1887&auto=format&fit=crop',
+    image: '/projects/interractive2-cover.jpg',
+    gallery: ['/projects/interractive2-cover.jpg'],
   },
   {
     slug: 'mons-2024',
@@ -138,8 +137,8 @@ const collections: Project[] = [
       "Interaction avec les vitrines urbaines. La rue devient écran ; le passant, déclencheur.",
     tools: ['Kinect', 'TouchDesigner', 'Projection vitrine'],
     connections: ['mons-2025'],
-    image:
-      'https://images.unsplash.com/photo-1572495641004-28421ae52e52?q=80&w=1887&auto=format&fit=crop',
+    image: '/projects/mons-2024-cover.jpg',
+    gallery: ['/projects/mons-2024-cover.jpg'],
   },
   {
     slug: 'mons-2025',
@@ -152,8 +151,8 @@ const collections: Project[] = [
       "Mapping immersif. Une dimension superposée à celle qu'on croyait connaître.",
     tools: ['MadMapper', 'TouchDesigner', 'Mapping monumental'],
     connections: ['mons-2024', 'mons-2026'],
-    image:
-      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop',
+    image: '/projects/mons-2025-cover.jpg',
+    gallery: ['/projects/mons-2025-cover.jpg'],
   },
   {
     slug: 'mons-2026',
@@ -166,8 +165,8 @@ const collections: Project[] = [
       "Une particule traverse le vide, rencontre la matière, devient lumière, devient vie. La création racontée à l'échelle de l'infime.",
     tools: ['Houdini', 'TouchDesigner', 'Mapping monumental'],
     connections: ['mons-2025', 'tourcoing-2026'],
-    image:
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1896&auto=format&fit=crop',
+    image: '/projects/mons-2026-cover.jpg',
+    gallery: ['/projects/mons-2026-cover.jpg'],
   },
   {
     slug: 'tourcoing-2025',
@@ -199,6 +198,12 @@ const collections: Project[] = [
   },
 ]
 
-export const projects: Project[] = [...individuals, ...collections]
-export const individualProjects = individuals
-export const collectionProjects = collections
+// Projets temporairement masqués — les données restent dans le fichier
+// pour un retour rapide. Retirer un slug d'ici = le rendre à nouveau visible.
+const HIDDEN_SLUGS = new Set(['tourcoing-2025', 'tourcoing-2026'])
+
+const isVisible = (p: Project) => !HIDDEN_SLUGS.has(p.slug)
+
+export const projects: Project[] = [...individuals, ...collections].filter(isVisible)
+export const individualProjects = individuals.filter(isVisible)
+export const collectionProjects = collections.filter(isVisible)

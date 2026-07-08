@@ -53,12 +53,9 @@ export default function ArgentLoopSlider() {
     lastScrollTime: Date.now(),
     dragStart: { y: 0, scrollY: 0 },
     projectHeight: 0,
-    minimapHeight: 250,
   })
 
   const projectsRef = React.useRef<Map<number, HTMLDivElement>>(new Map())
-  const minimapRef = React.useRef<Map<number, HTMLDivElement>>(new Map())
-  const infoRef = React.useRef<Map<number, HTMLDivElement>>(new Map())
   const requestRef = React.useRef<number>()
   const renderedRange = React.useRef({
     min: -CONFIG.BUFFER_SIZE,
@@ -107,25 +104,12 @@ export default function ArgentLoopSlider() {
 
   const updatePositions = () => {
     const s = state.current
-    const minimapY = (s.currentY * s.minimapHeight) / s.projectHeight
 
     projectsRef.current.forEach((el, index) => {
       const y = index * s.projectHeight + s.currentY
       el.style.transform = `translateY(${y}px)`
       const img = el.querySelector('img')
       updateParallax(img, s.currentY, index, s.projectHeight)
-    })
-
-    minimapRef.current.forEach((el, index) => {
-      const y = index * s.minimapHeight + minimapY
-      el.style.transform = `translateY(${y}px)`
-      const img = el.querySelector('img')
-      if (img) updateParallax(img, minimapY, index, s.minimapHeight)
-    })
-
-    infoRef.current.forEach((el, index) => {
-      const y = index * s.minimapHeight + minimapY
-      el.style.transform = `translateY(${y}px)`
     })
   }
 
@@ -303,67 +287,6 @@ export default function ArgentLoopSlider() {
         </button>
       </div>
 
-      {/* Indicateurs haut/bas */}
-      <div className="pointer-events-none absolute top-1/2 left-6 -translate-y-1/2 z-10 flex flex-col gap-1 font-mono text-[8px] uppercase tracking-[0.3em] text-mute/70">
-        <p>{currentNum}</p>
-        <span className="h-12 w-px bg-ghost/15 ml-2" />
-        <p className="opacity-50">{projects.length.toString().padStart(2, '0')}</p>
-      </div>
-
-      <p className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-10 font-mono text-[9px] uppercase tracking-[0.35em] text-mute/60">
-        ↕ scroll · drag · ↑ ↓
-      </p>
-
-      {/* MINIMAP — preview image + infos textuelles synchronisées */}
-      <div className="minimap">
-        <div className="minimap-wrapper">
-          <div className="minimap-img-preview">
-            {indices.map((i) => {
-              const p = getProject(i)
-              return (
-                <div
-                  key={i}
-                  className="minimap-img-item"
-                  ref={(el) => {
-                    if (el) minimapRef.current.set(i, el)
-                    else minimapRef.current.delete(i)
-                  }}
-                >
-                  <img src={p.image} alt={p.title} draggable={false} />
-                </div>
-              )
-            })}
-          </div>
-          <div className="minimap-info-list">
-            {indices.map((i) => {
-              const p = getProject(i)
-              const num = getNumber(i)
-              return (
-                <div
-                  key={i}
-                  className="minimap-item-info"
-                  ref={(el) => {
-                    if (el) infoRef.current.set(i, el)
-                    else infoRef.current.delete(i)
-                  }}
-                >
-                  <div className="minimap-item-info-row">
-                    <p>{num}</p>
-                    <p className="truncate">{p.title}</p>
-                  </div>
-                  <div className="minimap-item-info-row">
-                    <p>{p.kind}</p>
-                    <p>{p.year}</p>
-                  </div>
-                  <div className="minimap-item-info-row">
-                    <p>{p.tagline}</p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

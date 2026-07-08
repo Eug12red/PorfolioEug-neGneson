@@ -40,6 +40,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
     .filter(Boolean)
 
   const hasGallery = project.gallery && project.gallery.length > 0
+  // La couverture ouvre déjà le bento — on l'écarte de la galerie si elle y figure aussi
+  const galleryUrls = (project.gallery ?? []).filter((url) => url !== project.image)
 
   // Construit le tableau bento : couverture en premier (tile feature),
   // suivi de toutes les photos de la galerie.
@@ -53,7 +55,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           url: project.image,
           span: spanFor(0),
         },
-        ...project.gallery!.map((url, i) => ({
+        ...galleryUrls.map((url, i) => ({
           id: i + 1,
           type: 'image' as const,
           title: `${project.title} — fragment ${String(i + 1).padStart(2, '0')}`,

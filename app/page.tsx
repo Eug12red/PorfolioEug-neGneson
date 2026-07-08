@@ -16,7 +16,6 @@ const SynapseField = dynamic(() => import('@/components/SynapseField'), {
  */
 export default function Home() {
   const titleRef = useRef<HTMLHeadingElement>(null)
-  const subRef = useRef<HTMLParagraphElement>(null)
   const ctaRef = useRef<HTMLAnchorElement>(null)
   const fieldRef = useRef<HTMLDivElement>(null)
 
@@ -32,9 +31,6 @@ export default function Home() {
     tl.fromTo(titleRef.current,
       { opacity: 0, filter: 'blur(20px)', y: 30 },
       { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.6 }, '-=1.5')
-    .fromTo(subRef.current,
-      { opacity: 0, y: 16 },
-      { opacity: 1, y: 0, duration: 1 }, '-=0.9')
     .fromTo(ctaRef.current,
       { opacity: 0, y: 12 },
       { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
@@ -64,11 +60,6 @@ export default function Home() {
           INTRO<span className="text-synapse">.</span>
         </h1>
 
-        <p ref={subRef} className="mt-10 max-w-md font-serif text-lg italic leading-relaxed text-mute md:text-xl">
-          un esprit, des connexions,<br />
-          des œuvres qui regardent.
-        </p>
-
         <Link
           ref={ctaRef}
           href="/neuroscape"
@@ -79,10 +70,6 @@ export default function Home() {
           entrer dans l&apos;esprit
           <span className="h-px w-12 bg-ghost/40 transition-all duration-500 group-hover:w-24 group-hover:bg-synapse" />
         </Link>
-
-        <p className="absolute bottom-10 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.3em] text-mute/60">
-          ↓ scroll · ou cliquer
-        </p>
       </div>
     </section>
   )

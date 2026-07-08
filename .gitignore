@@ -8,3 +8,6 @@ out
 
 # Dossier de travail local (photos brutes / archives)
 port folio 2/
+
+# Config Claude Code locale (launch.json / etc.)
+.claude/
