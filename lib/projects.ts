@@ -38,7 +38,12 @@ const individuals: Project[] = [
     tools: ['TouchDesigner', 'Stable Diffusion', 'GLSL', 'Projection façade'],
     connections: ['mind-interaction', 'open-mind'],
     image: '/projects/cloud-cover.png',
-    gallery: ['/projects/cloud-cover.png'],
+    gallery: [
+      '/projects/cloud-cover.png',
+      '/projects/cloud-1.jpg',
+      '/projects/cloud-2.jpg',
+      '/projects/cloud-3.jpg',
+    ],
   },
   {
     slug: 'mind-interaction',

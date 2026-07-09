@@ -67,7 +67,7 @@ export default function Home() {
           data-cursor="enter"
         >
           <span className="h-px w-12 bg-ghost/40 transition-all duration-500 group-hover:w-24 group-hover:bg-synapse" />
-          entrer dans l&apos;esprit
+          entrer dans le portfolio
           <span className="h-px w-12 bg-ghost/40 transition-all duration-500 group-hover:w-24 group-hover:bg-synapse" />
         </Link>
       </div>
