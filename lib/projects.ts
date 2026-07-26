@@ -18,6 +18,9 @@ export type Project = {
   // Galerie affichée sur la page projet — toutes les photos en plein écran, empilées.
   // Si absent, on retombe sur le placeholder média.
   gallery?: string[]
+  // Désactive le zoom scale(1.5) et la parallaxe sur la tuile Works —
+  // à utiliser pour les couvertures dont on veut préserver le cadrage naturel.
+  coverNoZoom?: boolean
 }
 
 // ────────────────────────────────────────────────────────────────────
@@ -28,21 +31,26 @@ const individuals: Project[] = [
     slug: 'cloud',
     title: 'Cloud',
     tagline: 'Le poids invisible du nuage.',
-    year: '2025',
+    year: '2025 — 2026',
     kind: 'individual',
     position: [-2.4, 1.2, 0.4],
     description:
-      "Installation interactive monumentale interrogeant l'empreinte écologique du numérique. Le public dialogue avec une IA projetée à l'échelle du bâtiment ; chaque requête déclenche, en temps réel, la destruction visuelle d'un fragment de l'image. Le nuage se dissout sous le regard de ceux qui l'invoquent.",
+      "Installation audiovisuelle interactive temps réel. Des lieux réels scannés en 3D se désagrègent en nuages de particules puis se recomposent en d'autres paysages, pilotés en direct par le public. Une réflexion sur l'impact du numérique — le « cloud », la donnée — sur notre rapport au réel : un monde entièrement enregistrable mais devenu fragile et immatériel.",
     longText:
-      "Cloud confronte le geste anodin — une requête, un prompt, une question posée à la machine — à son coût matériel invisible. La projection couvre une façade ; l'image est entière, presque iconique. À chaque interaction du public via une interface IA, un fragment de l'image est littéralement effacé, érodé, désintégré. La beauté de la projection se consume au rythme de notre curiosité. Quand l'œuvre est devenue un trou noir, elle se reconstruit, et l'on recommence.",
-    tools: ['TouchDesigner', 'Stable Diffusion', 'GLSL', 'Projection façade'],
+      "Technique — Temps réel GPU · nuages de points 3D Gaussian Splatting (POPs) · simulation de particules en compute shaders GLSL (érosion, recomposition) · morphing multi-scènes · interactivité web ↔ installation via serveur HTTP/JSON en réseau local · caméra virtuelle scénarisée · automatisation Python.\n\nRôle — Conception & développement (création visuelle + implémentation technique).",
+    tools: ['TouchDesigner', 'GLSL', 'Gaussian Splatting', 'Python', 'HTTP/JSON'],
     connections: ['mind-interaction', 'open-mind'],
-    image: '/projects/cloud-cover.png',
+    image: '/projects/cloud-1.jpg',
+    coverNoZoom: true,
     gallery: [
       '/projects/cloud-cover.png',
       '/projects/cloud-1.jpg',
       '/projects/cloud-2.jpg',
       '/projects/cloud-3.jpg',
+      '/projects/cloud-video-1.mp4',
+      '/projects/cloud-video-2.mp4',
+      '/projects/cloud-video-3.mp4',
+      '/projects/cloud-video-4.mp4',
     ],
   },
   {
@@ -60,10 +68,13 @@ const individuals: Project[] = [
     connections: ['cloud', 'open-mind'],
     image: '/projects/mind-interaction-couverture.jpg',
     gallery: [
-      '/projects/mind-interaction-2.jpg',
       '/projects/mind-interaction-3.jpg',
       '/projects/mind-interaction-6.jpg',
       '/projects/mind-interaction-10.jpg',
+      '/projects/mind-interaction-video-1.mp4',
+      '/projects/mind-interaction-video-2.mp4',
+      '/projects/mind-interaction-video-3.mp4',
+      '/projects/mind-interaction-video-4.mp4',
     ],
   },
   {
@@ -81,14 +92,15 @@ const individuals: Project[] = [
     connections: ['cloud', 'mind-interaction'],
     image: '/projects/open-mind-couverture.jpg',
     gallery: [
+      '/projects/open-mind-video-2.mp4',
       '/projects/open-mind-hero.jpg',
       '/projects/open-mind-1.jpg',
       '/projects/open-mind-2.jpg',
       '/projects/open-mind-3.jpg',
-      '/projects/open-mind-5.jpg',
-      '/projects/open-mind-6.jpg',
       '/projects/open-mind-25.jpg',
       '/projects/open-mind-55.jpg',
+      '/projects/open-mind-video-1.mp4',
+      '/projects/open-mind-video-3.mp4',
     ],
   },
   {

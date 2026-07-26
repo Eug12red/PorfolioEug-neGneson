@@ -43,13 +43,17 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   // La couverture ouvre déjà le bento — on l'écarte de la galerie si elle y figure aussi
   const galleryUrls = (project.gallery ?? []).filter((url) => url !== project.image)
 
+  // Détection type à partir de l'extension (bento gère nativement <video>)
+  const mediaType = (url: string): 'image' | 'video' =>
+    /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url) ? 'video' : 'image'
+
   // Construit le tableau bento : couverture en premier (tile feature),
-  // suivi de toutes les photos de la galerie.
+  // suivi de toutes les photos/vidéos de la galerie.
   const bentoItems: BentoMediaItem[] = hasGallery
     ? [
         {
           id: 0,
-          type: 'image',
+          type: mediaType(project.image),
           title: `${project.title} — couverture`,
           desc: project.tagline,
           url: project.image,
@@ -57,7 +61,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         },
         ...galleryUrls.map((url, i) => ({
           id: i + 1,
-          type: 'image' as const,
+          type: mediaType(url),
           title: `${project.title} — fragment ${String(i + 1).padStart(2, '0')}`,
           desc: '',
           url,
@@ -130,7 +134,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             {project.description}
           </p>
           {project.longText && (
-            <p className="mt-10 max-w-prose text-base leading-[1.7] text-mute">
+            <p className="mt-10 max-w-prose whitespace-pre-line text-base leading-[1.7] text-mute">
               {project.longText}
             </p>
           )}

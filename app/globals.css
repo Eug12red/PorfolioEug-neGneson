@@ -118,7 +118,8 @@ html, body {
   will-change: transform;
 }
 
-.project img {
+.project img,
+.project video {
   position: absolute;
   top: 0;
   left: 0;
@@ -132,6 +133,13 @@ html, body {
   filter: brightness(0.82) saturate(1.18) contrast(1.22);
   user-select: none;
   -webkit-user-drag: none;
+}
+
+/* Vidéos et images marquées « no-zoom » : cadrage naturel, pas de scale(1.5),
+   pas de parallaxe — laisse la composition parler. */
+.project video,
+.project img[data-no-zoom] {
+  transform: none;
 }
 
 .project-veil {

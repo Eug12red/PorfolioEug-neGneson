@@ -35,6 +35,9 @@ const wrapIndex = (i: number) =>
 const getProject = (i: number): Project => projects[wrapIndex(i)]
 const getNumber = (i: number) => (wrapIndex(i) + 1).toString().padStart(2, '0')
 
+// La couverture d'un projet peut être une image ou une vidéo (mp4/webm/mov)
+const isVideoCover = (url: string) => /\.(mp4|webm|mov|m4v)(\?|$)/i.test(url)
+
 export default function ArgentLoopSlider() {
   const router = useRouter()
   const [visibleRange, setVisibleRange] = React.useState({
@@ -108,7 +111,9 @@ export default function ArgentLoopSlider() {
     projectsRef.current.forEach((el, index) => {
       const y = index * s.projectHeight + s.currentY
       el.style.transform = `translateY(${y}px)`
-      const img = el.querySelector('img')
+      // Parallaxe uniquement sur les images non marquées « no-zoom »
+      // (les vidéos et images « cadrage naturel » gardent leur position via CSS)
+      const img = el.querySelector('img:not([data-no-zoom])') as HTMLImageElement | null
       updateParallax(img, s.currentY, index, s.projectHeight)
     })
   }
@@ -252,7 +257,25 @@ export default function ArgentLoopSlider() {
                 else projectsRef.current.delete(i)
               }}
             >
-              <img src={p.image} alt={p.title} draggable={false} />
+              {isVideoCover(p.image) ? (
+                <video
+                  src={p.image}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  // Ralenti de moitié — les vidéos de couverture respirent
+                  ref={(el) => { if (el) el.playbackRate = 0.5 }}
+                />
+              ) : (
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  draggable={false}
+                  data-no-zoom={p.coverNoZoom ? '' : undefined}
+                />
+              )}
               <div className="project-veil" />
             </div>
           )
